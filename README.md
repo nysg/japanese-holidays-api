@@ -18,3 +18,13 @@ This project uses the official Japanese national holiday data (syukujitsu.csv) p
   - 内閣府のオリジナルデータから変換・加工されています / Converted and processed from Cabinet Office's original data
 - **コード / Code**: MIT License
   - See [LICENSE](./LICENSE) file for details
+
+## 使用上の注意 / Usage Notes
+
+このプロジェクトはGitHub Pagesでホスティングされています。以下の点にご注意ください：
+
+This project is hosted on GitHub Pages. Please note the following:
+
+- **非商用利用 / Non-commercial use**: 個人・非商用プロジェクト向けです / Intended for personal and non-commercial projects
+- **帯域幅制限 / Bandwidth limit**: 月間100GBの制限があります / 100GB per month soft limit
+- **推奨事項 / Recommendation**: 高トラフィックが予想される場合や本番環境での使用には、データをダウンロードしてローカルまたは自身のサーバーでホスティングすることをお勧めします / For high-traffic or production use, we recommend downloading the data and hosting it locally or on your own server
