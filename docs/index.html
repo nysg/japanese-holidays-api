@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Holidays API - 日本の祝日API</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #0366d6;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #0366d6;
+        }
+        code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .endpoints {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+        .endpoints li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Japanese Holidays API</h1>
+    <p>日本の祝日データを提供するAPIです。内閣府の公式データ（Shift_JIS）をUTF-8とJSONに変換して配信しています。</p>
+    <p>API for Japanese national holidays. Converts official Cabinet Office data from Shift_JIS to UTF-8 and JSON.</p>
+
+    <h2>API Endpoints</h2>
+    <div class="endpoints">
+        <ul>
+            <li><a href="./holidays.json">holidays.json</a> - JSON形式の祝日データ / Holiday data in JSON format</li>
+            <li><a href="./holidays.csv">holidays.csv</a> - UTF-8 CSV形式の祝日データ / Holiday data in UTF-8 CSV format</li>
+        </ul>
+    </div>
+
+    <h2>使用例 / Usage Example</h2>
+
+    <h3>JavaScript/Fetch API</h3>
+    <pre><code>fetch('https://nysg.github.io/japanese-holidays-api/holidays.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // [{ "date": "1955/1/1", "name": "元日" }, ...]
+  });</code></pre>
+
+    <h3>curl</h3>
+    <pre><code># JSON
+curl https://nysg.github.io/japanese-holidays-api/holidays.json
+
+# CSV
+curl https://nysg.github.io/japanese-holidays-api/holidays.csv</code></pre>
+
+    <h2>データ形式 / Data Format</h2>
+
+    <h3>JSON</h3>
+    <pre><code>[
+  {
+    "date": "1955/1/1",
+    "name": "元日"
+  },
+  {
+    "date": "1955/1/15",
+    "name": "成人の日"
+  }
+]</code></pre>
+
+    <h3>CSV</h3>
+    <pre><code>国民の祝日・休日月日,国民の祝日・休日名称
+1955/1/1,元日
+1955/1/15,成人の日</code></pre>
+
+    <h2>データソース / Data Source</h2>
+    <p>このプロジェクトは内閣府が公開している祝日データ（syukujitsu.csv）を利用しています。</p>
+    <p>This project uses the official Japanese national holiday data (syukujitsu.csv) published by the Cabinet Office of Japan.</p>
+    <ul>
+        <li><strong>出典 / Source</strong>: 内閣府「国民の祝日について」/ Cabinet Office "About National Holidays"
+            <ul>
+                <li>URL: <a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html" target="_blank">https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html</a></li>
+            </ul>
+        </li>
+        <li><strong>データライセンス / Data License</strong>: 公共データ利用規約（PDL1.0）/ Public Data License (PDL1.0) - CC BY 4.0互換 / Compatible with CC BY 4.0</li>
+        <li><strong>変換コードのライセンス / Code License</strong>: MIT License</li>
+    </ul>
+
+    <h2>更新頻度 / Update Frequency</h2>
+    <p>毎週日曜日0時（UTC）に自動更新されます。</p>
+    <p>Data is automatically updated every Sunday at 0:00 UTC.</p>
+
+    <h2>ライセンス / License</h2>
+    <ul>
+        <li><strong>データ / Data</strong>: 公共データ利用規約（PDL1.0） / Public Data License (PDL1.0)
+            <ul>
+                <li>内閣府のオリジナルデータから変換・加工されています / Converted and processed from Cabinet Office's original data</li>
+            </ul>
+        </li>
+        <li><strong>コード / Code</strong>: MIT License
+            <ul>
+                <li>See <a href="https://github.com/nysg/japanese-holidays-api/blob/main/LICENSE" target="_blank">LICENSE</a> file for details</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr style="margin-top: 40px; border: none; border-top: 1px solid #e1e4e8;">
+    <p style="text-align: center; color: #586069;">
+        <a href="https://github.com/nysg/japanese-holidays-api" target="_blank">View on GitHub</a>
+    </p>
+</body>
+</html>
