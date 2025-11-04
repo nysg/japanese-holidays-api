@@ -1,0 +1,25 @@
+{
+  "name": "japanese-holidays-api",
+  "version": "1.0.0",
+  "description": "UTF-8/JSON API for Japanese national holidays from Cabinet Office's official CSV",
+  "main": "convert.js",
+  "scripts": {
+    "convert": "node convert.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nysg/japanese-holidays-api.git"
+  },
+  "keywords": [
+    "japanese",
+    "holidays",
+    "api",
+    "csv",
+    "json"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "iconv-lite": "^0.6.3"
+  }
+}
