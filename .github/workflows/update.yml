@@ -1,0 +1,27 @@
+name: Update Holidays Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # 毎週日曜0時(UTC)
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install iconv-lite
+
+      - run: node convert.js
+
+      - name: Commit and Push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update holidays data" && git push)
