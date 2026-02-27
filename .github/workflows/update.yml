@@ -5,23 +5,38 @@ on:
     - cron: '0 0 * * 0'  # 毎週日曜0時(UTC)
   workflow_dispatch:  # 手動実行も可能
 
+# 1. 書き込み権限を明示的に付与
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 必要に応じて最新の履歴を取得
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - run: npm install iconv-lite
+      - name: Install dependencies
+        run: npm install iconv-lite
 
-      - run: node convert.js
+      - name: Run conversion script
+        run: node convert.js
 
       - name: Commit and Push
+        # 差分がある場合のみコミットしてプッシュ
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update holidays data" && git push)
+          if ! git diff --cached --exit-code --quiet; then
+            git commit -m "Update holidays data"
+            git push origin HEAD:${{ github.ref }}
+          fi
